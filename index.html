@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Estratégico Kiai 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* 1. CONFIGURACIÓN BASE & BRANDING */
+        :root {
+            --primary: #1E3A8A; /* Kiai Deep Blue */
+            --primary-light: #3B82F6;
+            --accent: #F97316; /* Kiai Orange */
+            --bg-body: #F3F4F6;
+            --text-main: #111827;
+            --text-muted: #4B5563;
+            --success: #059669;
+            --danger: #DC2626;
+            --white: #FFFFFF;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-body);
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        /* 2. CONTENEDOR DE LA DIAPOSITIVA (RESPONSIVO) */
+        .slide {
+            background: var(--white);
+            width: 100%;
+            max-width: 1200px;
+            min-height: 600px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        /* 3. TIPOGRAFÍA */
+        h1 { font-size: clamp(32px, 5vw, 56px); font-weight: 800; color: var(--primary); margin: 0 0 20px 0; line-height: 1.1; position: relative; z-index: 1; }
+        h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; color: var(--primary); margin: 0 0 30px 0; border-bottom: 4px solid var(--accent); padding-bottom: 10px; display: inline-block; position: relative; z-index: 1; }
+        h3 { font-size: 24px; font-weight: 700; color: var(--text-main); margin: 0 0 10px 0; position: relative; z-index: 1; }
+        p { font-size: 18px; line-height: 1.6; color: var(--text-muted); margin: 0 0 20px 0; position: relative; z-index: 1; }
+
+        /* 4. LAYOUTS INTERNOS */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .slide { padding: 20px; height: auto; }
+        }
+
+        /* 5. COMPONENTES */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .stat-card {
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .stat-value { font-size: 36px; font-weight: 800; color: var(--primary); display: block; }
+        .stat-label { font-size: 14px; font-weight: 700; color: var(--accent); text-transform: uppercase; }
+        .stat-sub { font-size: 12px; color: var(--text-muted); }
+
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+        .roadmap-card {
+            background: var(--white);
+            border: 1px solid #E5E7EB;
+            border-top: 4px solid var(--text-muted);
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .roadmap-card.active { border-top-color: var(--accent); background: #FFF7ED; }
+        .roadmap-card h4 { font-size: 20px; margin: 0 0 5px 0; color: var(--primary); }
+        .roadmap-card ul { padding-left: 20px; margin: 10px 0 0 0; }
+        .roadmap-card li { font-size: 14px; margin-bottom: 5px; }
+
+        .funnel-container {
+            background: #EFF6FF;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+        }
+        .funnel-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .eco-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+            width: 100%;
+        }
+        .eco-item {
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .eco-item i { font-size: 24px; color: var(--primary); }
+        .eco-item.core { background: var(--primary); color: white; grid-column: 1 / -1; justify-content: center; }
+        .eco-item.core i { color: white; }
+        .eco-item.cross-sell { border: 2px solid var(--success); background: #F0FDF4; } /* Highlight for Cross-Sell */
+
+        .img-container {
+            width: 100%;
+            height: 300px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #E5E7EB;
+        }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; }
+
+        .milestones-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .milestone-card {
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .milestone-card.premium {
+            background: var(--primary);
+            color: white;
+            border: none;
+        }
+        .milestone-card h4 { font-size: 20px; margin-bottom: 5px; }
+        .milestone-card p { font-size: 14px; margin: 0; color: var(--text-muted); }
+        .milestone-card.premium p { color: #DBEAFE; }
+        .milestone-badge {
+            background: var(--accent);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .math-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .math-card {
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 16px;
+            padding: 15px;
+            text-align: center;
+            min-width: 160px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .math-card h3 { font-size: 24px; color: var(--primary); margin: 0 0 5px 0; }
+        .math-card p { font-size: 12px; margin: 0; }
+        .math-symbol { font-size: 20px; color: var(--text-muted); font-weight: bold; }
+        .math-card.total { background: var(--primary); color: white; transform: scale(1.05); border: none; }
+        .math-card.total h3 { color: white; }
+        .math-card.total p { color: #DBEAFE; }
+
+        /* SCENARIO COMPARISON (Slide 4) */
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .scenario-card {
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s;
+        }
+        .scenario-card:hover { transform: translateY(-5px); }
+        .scenario-card.base { border-top: 5px solid var(--text-muted); }
+        .scenario-card.avg { border-top: 5px solid var(--primary); background: #EFF6FF; border-color: var(--primary-light); }
+        .scenario-card.goal { border-top: 5px solid var(--accent); background: #FFF7ED; border-color: #FED7AA; }
+        
+        .scenario-title { font-size: 14px; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 10px; }
+        .scenario-card.goal .scenario-title { color: var(--accent); }
+        
+        .scenario-number { font-size: 36px; font-weight: 800; color: var(--text-main); margin-bottom: 5px; }
+        .scenario-card.goal .scenario-number { color: var(--accent); }
+        .scenario-card.avg .scenario-number { color: var(--primary); }
+        
+        .scenario-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 15px; }
+        
+        .scenario-result { 
+            background: #F3F4F6; 
+            padding: 10px; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            color: var(--text-main);
+            font-size: 18px;
+        }
+        .scenario-card.goal .scenario-result { background: var(--accent); color: white; }
+        .scenario-card.avg .scenario-result { background: var(--primary); color: white; }
+
+    </style>
+</head>
+<body>
+
+    <!-- SLIDE 1: PORTADA -->
+    <div class="slide">
+        <img src="https://maritzruizkiai.github.io/reporte-gestion-kiai-2025/assets/images/logo.png" alt="Logo Kiai" style="height: 60px; width: auto; object-fit: contain; margin-bottom: 20px;">
+        <div class="grid-2">
+            <div>
+                <span style="color: var(--accent); font-weight: 700; letter-spacing: 2px;">ESTRATEGIA 2026</span>
+                <h1>Misión:<br>Expansión a $1.500M</h1>
+                <p>El reto es duplicar el impacto. Con una base sólida de $790M, activamos la venta cruzada de nuestro portafolio actual para alcanzar el billón y medio.</p>
+                <div style="margin-top: 30px;">
+                    <span style="background: var(--primary); color: white; padding: 12px 24px; border-radius: 8px; font-weight: 700;">Objetivo: +90% Crecimiento</span>
+                </div>
+            </div>
+            <div class="img-container">
+                <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Reunión estratégica">
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 2: LA META FINANCIERA -->
+    <div class="slide">
+        <h2>La Fórmula del Crecimiento</h2>
+        <p>Partimos de $790M reales. El ajuste inflacionario y el crecimiento orgánico nos llevan lejos, pero la gestión comercial cierra la brecha.</p>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-value">$790M</span>
+                <span class="stat-label">Base Real 2025</span>
+                <span class="stat-sub">Facturación Depurada</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value" style="color: var(--success);">+$168M</span>
+                <span class="stat-label">Aumento 23%</span>
+                <span class="stat-sub">IPC + Salarial</span>
+            </div>
+            <div class="stat-card" style="border-bottom: 4px solid var(--accent);">
+                <span class="stat-value">$81M</span>
+                <span class="stat-label">Referidos</span>
+                <span class="stat-sub">Escenario Base</span>
+            </div>
+            <div class="stat-card" style="border-bottom: 4px solid var(--primary);">
+                <span class="stat-value">$447M</span>
+                <span class="stat-label">Expansión Total</span>
+                <span class="stat-sub">Venta Cruzada + Aliados + Ads</span>
+            </div>
+        </div>
+
+        <div style="margin-top: 30px; text-align: center; font-size: 24px; font-weight: 800; color: var(--primary); background: #EFF6FF; padding: 15px; border-radius: 12px;">
+            META TOTAL: $1.426.255.261 COP
+        </div>
+    </div>
+
+    <!-- SLIDE 3: ROADMAP -->
+    <div class="slide">
+        <h2>Roadmap: Distribución de la Meta</h2>
+        <p>Foco estratégico en Q2 y Q3 para expansión comercial. Q4 dedicado a la retención futura.</p>
+        
+        <div class="roadmap-grid">
+            <div class="roadmap-card">
+                <h4>Q1: Activación</h4>
+                <span style="font-size: 12px; color: var(--text-muted); font-weight: 700;">19% DE LA META</span>
+                <ul>
+                    <li>Base Recurrente.</li>
+                    <li>Lanzamiento Plan Embajador.</li>
+                    <li>Inicio Auto-onboarding.</li>
+                </ul>
+            </div>
+            <div class="roadmap-card active">
+                <h4>Q2: Énfasis</h4>
+                <span style="font-size: 12px; color: var(--primary); font-weight: 700;">29% DE LA META</span>
+                <ul>
+                    <li>Cosecha de Referidos.</li>
+                    <li>Campaña Agresiva Venta Cruzada.</li>
+                    <li>Firma & Verify a la Base.</li>
+                </ul>
+            </div>
+            <div class="roadmap-card active">
+                <h4>Q3: Énfasis</h4>
+                <span style="font-size: 12px; color: var(--primary); font-weight: 700;">29% DE LA META</span>
+                <ul>
+                    <li>Pico Comercial.</li>
+                    <li>Upsell de Módulos Salud.</li>
+                    <li>Consolidación Ecosistema.</li>
+                </ul>
+            </div>
+            <div class="roadmap-card">
+                <h4>Q4: Renovación</h4>
+                <span style="font-size: 12px; color: var(--accent); font-weight: 700;">23% DE LA META</span>
+                <ul>
+                    <li><strong>Campaña Renovación Anticipada.</strong></li>
+                    <li>Cierre Fiscal.</li>
+                    <li>Asegurar Caja 2027.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: REFERIDOS (Comparativa) -->
+    <div class="slide">
+        <h2>Referidos: Matriz de Escenarios</h2>
+        <p>Proyección basada en <strong>25 Embajadores</strong> (20% de adopción) con un Ticket Promedio de <strong>$648.000</strong>.</p>
+        
+        <div class="scenario-grid">
+            <!-- Escenario 1 -->
+            <div class="scenario-card base">
+                <div class="scenario-title">Base (Conservador)</div>
+                <div class="scenario-number">5</div>
+                <div class="scenario-desc">Referidos por Embajador</div>
+                <div style="font-size: 12px; margin-bottom: 10px;">Incentivo: 6 Meses Gratis</div>
+                <div class="scenario-result">$81.0 Millones</div>
+            </div>
+
+            <!-- Escenario 2 (Promedio) -->
+            <div class="scenario-card avg">
+                <div class="scenario-title">Promedio Ponderado</div>
+                <div class="scenario-number">7.5</div>
+                <div class="scenario-desc">Referidos por Embajador</div>
+                <div style="font-size: 12px; margin-bottom: 10px;">Mix de Incentivos</div>
+                <div class="scenario-result">$121.5 Millones</div>
+            </div>
+
+            <!-- Escenario 3 -->
+            <div class="scenario-card goal">
+                <div class="scenario-title">Meta (Aspiracional)</div>
+                <div class="scenario-number">10</div>
+                <div class="scenario-desc">Referidos por Embajador</div>
+                <div style="font-size: 12px; margin-bottom: 10px;">Incentivo: 1 Año Gratis</div>
+                <div class="scenario-result">$162.0 Millones</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 30px; text-align: center; color: var(--text-muted); font-size: 14px; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <i class="fa-solid fa-info-circle"></i> <strong>Nota Financiera:</strong> Para el presupuesto global ($1.426M) estamos utilizando el <strong>Escenario Base ($81M)</strong> para ser prudentes. Si logramos el escenario Promedio o Meta, superaremos los $1.500M.
+        </div>
+    </div>
+
+    <!-- SLIDE 5: ECOSISTEMA -->
+    <div class="slide">
+        <h2>Ecosistema Kiai: Fuente de $447M</h2>
+        <p>Dividimos la meta de expansión en tres frentes realistas: Venta Cruzada, Crecimiento de Aliados y Publicidad.</p>
+        
+        <div class="eco-grid">
+            <div class="eco-item core">
+                <i class="fa-solid fa-layer-group"></i>
+                <strong>KIAI FACTURACIÓN (BASE)</strong>
+            </div>
+            
+            <div class="eco-item cross-sell">
+                <i class="fa-solid fa-heart-pulse"></i>
+                <span><strong>Kiai Salud</strong><br><small>RIPS/Historias</small></span>
+            </div>
+            <div class="eco-item cross-sell">
+                <i class="fa-solid fa-bus"></i>
+                <span><strong>Kiai Transporte</strong><br><small>Pasajeros & Tiquetes</small></span>
+            </div>
+            <div class="eco-item cross-sell">
+                <i class="fa-solid fa-file-signature"></i>
+                <span><strong>Kiai Firma</strong><br><small>Electrónica</small></span>
+            </div>
+            <div class="eco-item cross-sell">
+                <i class="fa-solid fa-user-shield"></i>
+                <span><strong>Kiai Verify</strong><br><small>Sarlaft</small></span>
+            </div>
+            
+            <div class="eco-item">
+                <i class="fa-regular fa-credit-card"></i>
+                <span>Kiai Pagos</span>
+            </div>
+            <div class="eco-item">
+                <i class="fa-solid fa-money-bill-transfer"></i>
+                <span>Kiai Cartera</span>
+            </div>
+            <div class="eco-item">
+                <i class="fa-solid fa-umbrella-beach"></i>
+                <span>Kiai Turismo</span>
+            </div>
+        </div>
+        
+        <div style="margin-top: 20px; text-align: center; color: var(--success); font-weight: 700;">
+            <i class="fa-solid fa-arrow-up"></i> OBJETIVO: Aumentar Ticket Promedio con Upsell
+        </div>
+    </div>
+
+    <!-- SLIDE 6: CIERRE -->
+    <div class="slide" style="text-align: center;">
+        <h1 style="color: var(--primary); font-size: clamp(40px, 6vw, 72px);">¡Vamos por los $1.426M!</h1>
+        <p style="max-width: 800px; margin: 0 auto; margin-bottom: 40px;">
+            El reto es grande pero la estrategia es clara. Tenemos la tecnología y los productos para lograrlo.
+        </p>
+        
+        <div class="math-row">
+            <div class="math-card">
+                <h3>$790M</h3>
+                <p>Base Real</p>
+            </div>
+            <div class="math-symbol">+</div>
+            <div class="math-card">
+                <h3 style="color: var(--success);">$168M</h3>
+                <p>Ajuste 23%</p>
+            </div>
+            <div class="math-symbol">+</div>
+            <div class="math-card">
+                <h3 style="color: var(--accent);">$81M</h3>
+                <p>Referidos</p>
+            </div>
+            <div class="math-symbol">+</div>
+            <div class="math-card">
+                <h3 style="color: var(--primary-light);">$223M</h3>
+                <p>Venta Cruzada</p>
+            </div>
+            <div class="math-symbol">+</div>
+            <div class="math-card">
+                <h3 style="color: var(--success);">$150M</h3>
+                <p>Aliados</p>
+            </div>
+            <div class="math-symbol">+</div>
+            <div class="math-card">
+                <h3 style="color: var(--text-muted);">$74M</h3>
+                <p>Ads</p>
+            </div>
+            <div class="math-symbol">=</div>
+            <div class="math-card total">
+                <h3>$1.426M</h3>
+                <p>META 2026</p>
+            </div>
+        </div>
+        
+        <div style="margin-top: 30px; background: #FDE8E8; padding: 15px; border-radius: 12px; display: inline-block;">
+            <p style="color: #9B1C1C; font-weight: 700; font-size: 14px; margin: 0;">RETO DE VENTA CRUZADA: ~$19M / MES EN UPSELL (Realista)</p>
+        </div>
+    </div>
+
+</body>
+</html>
