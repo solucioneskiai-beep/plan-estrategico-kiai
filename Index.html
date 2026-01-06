@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Estratégico Kiai 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+/* 1. SETUP & BRANDING (Kiai Tech Theme - Classic Design) */
+:root {
+    --primary: #1E3A8A; /* Kiai Deep Blue */
+    --primary-light: #3B82F6;
+    --accent: #F97316; /* Kiai Orange/Smile */
+    --accent-light: #FDBA74;
+    --bg-body: #F3F4F6;
+    --bg-card: #FFFFFF;
+    --text-main: #1F2937;
+    --text-muted: #6B7280;
+    --success: #10B981;
+    --danger: #EF4444;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-body);
+  display: grid;
+  gap: 40px;
+  grid-template-columns: 1fr;
+  margin: 0;
+  min-height: 100vh;
+  padding: 40px 0;
+  place-items: center;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-main);
+}
+
+/* Slide Container (Classic Style) */
+.slide-container {
+  background-color: var(--bg-card);
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  display: none; /* Hidden by default */
+  flex-direction: column;
+  height: 720px;
+  width: 1280px;
+  overflow: hidden;
+  padding: 60px 80px;
+  position: relative;
+  border: 1px solid rgba(0,0,0,0.02);
+}
+
+.slide-container.active {
+    display: flex;
+}
+
+/* Background Elements */
+.slide-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(30, 58, 138, 0.03) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(30%, -30%);
+    z-index: 0;
+}
+
+/* Logo Positioning */
+.kiai-logo {
+    position: absolute;
+    top: 40px;
+    left: 80px;
+    height: 60px; 
+    width: auto;   
+    object-fit: contain;
+    z-index: 10;
+}
+
+/* 2. TYPOGRAPHY */
+h1, h2, h3, h4 {
+  color: var(--primary);
+  font-weight: 800;
+  margin: 0;
+  z-index: 1;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 58px;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+h1 span, h2 span, .highlight {
+  color: var(--accent);
+}
+
+p, li, .subtitle {
+  color: var(--text-muted);
+  font-size: 20px;
+  line-height: 1.6;
+  font-weight: 400;
+  z-index: 1;
+}
+
+.slide-title {
+  font-size: 42px;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #E5E7EB;
+  width: 100%;
+  position: relative;
+}
+
+.slide-title::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100px;
+    height: 2px;
+    background: var(--accent);
+}
+
+/* 3. LAYOUTS & COMPONENTS */
+.content-area {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  width: 100%;
+  z-index: 1;
+}
+
+/* Highlight Numbers */
+.highlight-numbers-layout {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 20px;
+}
+.highlight-numbers-layout > div {
+    flex: 1;
+    text-align: center;
+    background: #FFFFFF;
+    padding: 30px 15px;
+    border-radius: 16px;
+    border: 1px solid #E5E7EB;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    transition: transform 0.2s;
+}
+.highlight-numbers-layout > div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+}
+.highlight-numbers-layout .number {
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+.highlight-numbers-layout .label {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.highlight-numbers-layout .sub-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 5px;
+}
+
+/* Two Column */
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  height: 100%;
+}
+.two-column ul {
+    list-style: none;
+    padding: 0;
+}
+.two-column li {
+    margin-bottom: 16px;
+    padding-left: 30px;
+    position: relative;
+}
+.two-column li::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--success);
+    position: absolute;
+    left: 0;
+    top: 2px;
+}
+
+/* Image Wrapper */
+.image-wrapper {
+  border-radius: 20px;
+  overflow: hidden;
+  height: 100%;
+  max-height: 450px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  background: #E5E7EB;
+}
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Timeline/Roadmap */
+.roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+.roadmap-card {
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+.roadmap-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--text-muted);
+}
+.roadmap-card.active::before { background: var(--accent); }
+.roadmap-card.peak::before { background: var(--primary); }
+
+.roadmap-card h3 { font-size: 24px; margin-bottom: 5px; }
+.roadmap-card .subtitle { font-size: 14px; font-weight: 600; text-transform: uppercase; margin-bottom: 15px; color: var(--text-muted); }
+.roadmap-card ul { padding-left: 20px; margin: 0; }
+.roadmap-card li { font-size: 15px; margin-bottom: 8px; }
+
+/* Math Blocks */
+.math-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+.math-block {
+    flex: 1;
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 16px;
+    padding: 20px 10px;
+    text-align: center;
+    position: relative;
+    min-width: 0;
+}
+.math-block.total {
+    background: var(--primary);
+    color: white;
+    border: none;
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(30, 58, 138, 0.2);
+    padding: 25px 15px;
+    flex: 1.2;
+}
+.math-block h3 {
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: var(--primary);
+    word-break: break-word;
+}
+.math-block.total h3 { color: white; font-size: 32px; word-break: normal;}
+.math-block p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.3; }
+.math-block.total p { color: #DBEAFE; font-size: 14px; }
+.math-plus {
+    font-size: 20px;
+    color: var(--text-muted);
+    font-weight: bold;
+}
+
+/* Pricing Table */
+.pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 12px;
+}
+.pricing-table th { text-align: left; color: var(--text-muted); padding: 5px; border-bottom: 1px solid #E5E7EB; }
+.pricing-table td { padding: 5px; border-bottom: 1px solid #F3F4F6; color: var(--text-main); font-weight: 600; }
+
+/* --- REDESIGNED SLIDE 5: MOTORES DE EXPANSIÓN --- */
+.engines-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    height: 100%;
+}
+.engine-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.engine-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #E5E7EB;
+}
+.engine-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+}
+.engine-title h3 {
+    margin: 0;
+    font-size: 22px;
+    color: var(--text-main);
+}
+.engine-title span {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.product-card {
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+    transition: transform 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.product-card:hover { transform: translateX(5px); border-color: var(--primary-light); }
+.product-info h4 { margin: 0 0 5px 0; font-size: 18px; color: var(--primary); }
+.product-info p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.3; max-width: 250px;}
+.product-pricing { text-align: right; }
+.ticket-label { display: block; font-size: 10px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; }
+.ticket-value { font-size: 20px; font-weight: 800; color: var(--text-main); }
+.ticket-value.high { color: var(--success); }
+
+/* Scenario Grid (Slide 4) */
+.scenario-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-top: 30px;
+}
+.scenario-card {
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    position: relative;
+    transition: transform 0.3s;
+}
+.scenario-card:hover { transform: translateY(-5px); }
+.scenario-card.base { border-top: 5px solid var(--text-muted); }
+.scenario-card.avg { border-top: 5px solid var(--primary); background: #EFF6FF; border-color: var(--primary-light); }
+.scenario-card.goal { border-top: 5px solid var(--accent); background: #FFF7ED; border-color: #FED7AA; }
+
+.scenario-title { font-size: 14px; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 10px; }
+.scenario-card.goal .scenario-title { color: var(--accent); }
+
+.scenario-number { font-size: 36px; font-weight: 800; color: var(--text-main); margin-bottom: 5px; }
+.scenario-card.goal .scenario-number { color: var(--accent); }
+.scenario-card.avg .scenario-number { color: var(--primary); }
+
+.scenario-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 15px; }
+
+.scenario-result { 
+    background: #F3F4F6; 
+    padding: 10px; 
+    border-radius: 8px; 
+    font-weight: 700; 
+    color: var(--text-main);
+    font-size: 18px;
+}
+.scenario-card.goal .scenario-result { background: var(--accent); color: white; }
+.scenario-card.avg .scenario-result { background: var(--primary); color: white; }
+
+/* Navigation Controls */
+.nav-controls {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+}
+.nav-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.2s;
+}
+.nav-btn:hover {
+    background-color: var(--primary-light);
+}
+.nav-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Controles de Navegación -->
+    <div class="nav-controls">
+        <button id="prevBtn" class="nav-btn" onclick="prevSlide()" disabled><i class="fa-solid fa-arrow-left"></i> Anterior</button>
+        <button id="nextBtn" class="nav-btn" onclick="nextSlide()">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+
+<!-- SLIDE 1: PORTADA -->
+<div class="slide-container active" id="slide1">
+    <img src="https://maritzruizkiai.github.io/reporte-gestion-kiai-2025/assets/images/logo.png" alt="Logo Kiai" class="kiai-logo">
+    <div class="content-area">
+        <div class="two-column">
+            <div>
+                <h4 style="color: var(--accent); letter-spacing: 2px; margin-bottom: 16px;">ESTRATEGIA 2026</h4>
+                <h1>Misión:<br>Expansión a $1.426M</h1>
+                <p style="margin-top: 24px; font-size: 22px;">Proyección financiera ajustada y realista. Partiendo de una base sólida y un aumento del 15%, activamos el crecimiento orgánico.</p>
+                <div style="margin-top: 40px; display: flex; gap: 16px;">
+                    <div style="background: var(--primary); color: white; padding: 12px 24px; border-radius: 8px; font-weight: 600;">Objetivo: +95% Crecimiento</div>
+                    <div style="border: 1px solid var(--primary); color: var(--primary); padding: 12px 24px; border-radius: 8px; font-weight: 600;">Enero 2026</div>
+                </div>
+            </div>
+            <div class="image-wrapper">
+                 <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Reunión estratégica">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 2: LA META FINANCIERA -->
+<div class="slide-container" id="slide2">
+    <img src="https://maritzruizkiai.github.io/reporte-gestion-kiai-2025/assets/images/logo.png" alt="Kiai Logo" class="kiai-logo">
+    <h2 class="slide-title">La Fórmula del Crecimiento</h2>
+    <div class="content-area">
+        <p style="text-align: center; max-width: 900px; margin: 0 auto 40px;">Partimos de $790M reales. Con un ajuste conservador del 15%, el crecimiento viene de la gestión comercial.</p>
+        
+        <div class="highlight-numbers-layout">
+            <div>
+                <div class="number">$790M</div>
+                <div class="label">Base Real 2025</div>
+                <div class="sub-label">Facturación Depurada</div>
+            </div>
+            <div>
+                <div class="number" style="color: var(--success);">+$119M</div>
+                <div class="label" style="color: var(--success);">Aumento 15%</div>
+                <div class="sub-label">IPC + Salarial</div>
+            </div>
+            <div style="border-bottom: 4px solid var(--accent);">
+                <div class="number">$81M</div>
+                <div class="label">Referidos</div>
+                <div class="sub-label">Ingreso Bruto (Optimista)</div>
+            </div>
+            <div style="border-bottom: 4px solid var(--primary);">
+                <div class="number">$447M</div>
+                <div class="label">Expansión Total</div>
+                <div class="sub-label">Cross-Sell + Aliados + Ads</div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 40px; text-align: center;">
+             <span style="background: var(--primary); color: white; padding: 10px 20px; border-radius: 30px; font-weight: 700; font-size: 20px;">META TOTAL: $1.437.000.000 COP</span>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 3: ROADMAP -->
+<div class="slide-container" id="slide3">
+    <img src="https://maritzruizkiai.github.io/reporte-gestion-kiai-2025/assets/images/logo.png" alt="Kiai Logo" class="kiai-logo">
+    <h2 class="slide-title">Roadmap: Distribución de la Meta</h2>
+    <div class="content-area" style="justify-content: flex-start; padding-top: 20px;">
+        <p style="margin-bottom: 30px;">Foco estratégico en Q2 y Q3 para expansión comercial con nuevos productos.</p>
+        
+        <div class="roadmap-grid">
+            <div class="roadmap-card">
+                <h3>Q1</h3>
+                <div class="subtitle">Activación</div>
+                <ul>
+                    <li>Base Recurrente.</li>
+                    <li>Lanzamiento Plan Embajador.</li>
+                    <li>Inicio Auto-onboarding.</li>
+                </ul>
+            </div>
+            <div class="roadmap-card peak">
+                <h3 style="color: var(--primary);">Q2</h3>
+                <div class="subtitle" style="color: var(--primary);">Énfasis</div>
+                <ul>
+                    <li>Cosecha de Referidos.</li>
+                    <li><strong>Lanzamiento Recepción Retail.</strong></li>
+                    <li>Venta Cruzada Firma.</li>
+                </ul>
+            </div>
+            <div class="roadmap-card peak">
+                <h3 style="color: var(--primary);">Q3</h3>
+                <div class="subtitle" style="color: var(--primary);">Énfasis</div>
+                <ul>
+                    <li><strong>Recepción Transporte & Retail.</strong></li>
+                    <li>Pico Comercial.</li>
+                    <li>Upsell de Módulos Salud.</li>
+                </ul>
+            </div>
+            <div class="roadmap-card active">
+                <h3 style="color: var(--accent);">Q4</h3>
+                <div class="subtitle" style="color: var(--accent);">Renovación</div>
+                <ul>
+                    <li><strong>Campaña Renovación Anticipada.</strong></li>
+                    <li>Cierre Fiscal.</li>
+                    <li>Asegurar Caja 2027.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 4: REFERIDOS (Comparativa) -->
+<div class="slide-container" id="slide4">
+    <img src="https://maritzruizkiai.github.io/reporte-gestion-kiai-2025/assets/images/logo.png" alt="Kiai Logo" class="kiai-logo">
+    <h2 class="slide-title">Referidos: Matriz de Escenarios</h2>
+    <div class="content-area">
+        <p style="text-align: center; margin-bottom: 20px;">Proyección basada en <strong>25 Embajadores</strong> (20% de adopción) con un Ticket Promedio de <strong>$648.000</strong>.</p>
+        
+        <div class="scenario-grid">
+            <!-- Escenario 1 -->
+            <div class="scenario-card base">
+                <div class="scenario-title">Base (Conservador)</div>
+                <div class="scenario-number">5</div>
+                <div class="scenario-desc">Referidos por Embajador</div>
+                <div style="font-size: 12px; margin-bottom: 10px;">Incentivo: 6 Meses Gratis</div>
+                <div class="scenario-result">$81.0 Millones</div>
+            </div>
+
+            <!-- Escenario 2 (Promedio) -->
+            <div class="scenario-card avg">
+                <div class="scenario-title">Promedio Ponderado</div>
+                <div class="scenario-number">7.5</div>
+                <div class="scenario-desc">Referidos por Embajador</div>
+                <div style="font-size: 12px; margin-bottom: 10px;">Mix de Incentivos</div>
+                <div class="scenario-result">$121.5 Millones</div>
+            </div>
+
+            <!-- Escenario 3 -->
+            <div class="scenario-card goal">
+                <div class="scenario-title">Meta (Aspiracional)</div>
+                <div class="scenario-number">10</div>
+                <div class="scenario-desc">Referidos por Embajador</div>
+                <div style="font-size: 12px; margin-bottom: 10px;">Incentivo: 1 Año Gratis</div>
+                <div class="scenario-result">$162.0 Millones</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 30px; text-align: center; color: var(--text-muted); font-size: 14px; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <i class="fa-solid fa-info-circle"></i> <strong>Nota Financiera:</strong> Para el presupuesto global ($1.426M) estamos utilizando el <strong>Escenario Base ($81M)</strong> para ser prudentes. Si logramos el escenario Promedio o Meta, superaremos los $1.500M.
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 5: MOTORES DE EXPANSIÓN -->
+<div class="slide-container" id="slide5">
+    <img src="https://maritzruizkiai.github.io/reporte-gestion-kiai-2025/assets/images/logo.png" alt="Kiai Logo" class="kiai-logo">
+    <h2 class="slide-title">Motores de Expansión</h2>
+    <div class="content-area">
+        <div class="engines-layout">
+            <!-- COLUMNA 1: VENTA CRUZADA -->
+            <div class="engine-column">
+                <div class="engine-header">
+                    <div class="engine-icon" style="background: var(--primary-light);"><i class="fa-solid fa-sync"></i></div>
+                    <div class="engine-title">
+                        <h3>1. Venta Cruzada</h3>
+                        <span>Meta: $223 Millones</span>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-info">
+                        <h4>Kiai Firma</h4>
+                        <p>Producto de volumen. Base B2B masiva.</p>
+                    </div>
+                    <div class="product-pricing">
+                        <span class="ticket-label">Ticket Promedio</span>
+                        <div class="ticket-value">$594K</div>
+                    </div>
+                </div>
+
+                <div class="product-card" style="border-left: 5px solid var(--primary);">
+                    <div class="product-info">
+                        <h4>Kiai Verify (Sarlaft)</h4>
+                        <p>Cumplimiento normativo.</p>
+                    </div>
+                    <div class="product-pricing">
+                        <span class="ticket-label">Ticket Promedio</span>
+                        <div class="ticket-value high">$5.6M</div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-info">
+                        <h4>Kiai Salud</h4>
+                        <p>Upsell de RIPS.</p>
+                    </div>
+                    <div class="product-pricing">
+                        <span class="ticket-label">Upsell Estimado</span>
+                        <div class="ticket-value" style="color: var(--text-muted);">+20%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUMNA 2: NUEVOS ALIADOS -->
+            <div class="engine-column">
+                <div class="engine-header">
+                    <div class="engine-icon" style="background: var(--success);"><i class="fa-solid fa-network-wired"></i></div>
+                    <div class="engine-title">
+                        <h3>2. Nuevos Aliados</h3>
+                        <span>Meta: $150 Millones</span>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-info">
+                        <h4>Transporte</h4>
+                        <p>Control de Pasajeros y Tiquetes.</p>
+                    </div>
+                    <div class="product-pricing">
+                        <span class="ticket-label">Ticket Estimado</span>
+                        <div class="ticket-value">$600K <small>/mes</small></div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-info">
+                        <h4>Retail (Fruvers)</h4>
+                        <p>Stock Automático mediante Recepción de Documentos.</p>
+                    </div>
+                    <div class="product-pricing">
+                        <span class="ticket-label">Ticket Estimado</span>
+                        <div class="ticket-value">$450K <small>/mes</small></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 6: CIERRE -->
+<div class="slide-container" id="slide6">
+    <img src="https://maritzruizkiai.github.io/reporte-gestion-kiai-2025/assets/images/logo.png" alt="Kiai Logo" class="kiai-logo">
+    <h2 class="slide-title">La Matemática Final</h2>
+    <div class="content-area">
+        <p style="text-align: center; margin-bottom: 30px;">Una proyección orgánica y alcanzable, sin forzar números.</p>
+        
+        <div class="math-container">
+            <!-- Block 1 -->
+            <div class="math-block">
+                <h3>$790M</h3>
+                <p><strong>Base Real</strong><br>(Neto 2025)</p>
+            </div>
+            
+            <div class="math-plus">+</div>
+            
+            <!-- Block 2 -->
+            <div class="math-block">
+                <h3 style="color: var(--success);">$119M</h3>
+                <p><strong>Ajuste 15%</strong><br>(IPC + Salarial)</p>
+            </div>
+            
+            <div class="math-plus">+</div>
+            
+            <!-- Block 3 -->
+            <div class="math-block">
+                <h3 style="color: var(--accent);">$81M</h3>
+                <p><strong>Referidos</strong><br>(Escenario Base)</p>
+            </div>
+            
+             <div class="math-plus">+</div>
+
+             <!-- Block 4 -->
+            <div class="math-block">
+                <h3 style="color: var(--primary-light);">$223M</h3>
+                <p><strong>Venta Cruzada</strong><br>(Firma + Verify)</p>
+            </div>
+
+            <div class="math-plus">+</div>
+
+             <!-- Block 5 -->
+            <div class="math-block">
+                <h3 style="color: var(--success);">$150M</h3>
+                <p><strong>Prod. Nuevos Aliados</strong><br>(Recepción Inteligente)</p>
+            </div>
+
+            <div class="math-plus">+</div>
+
+             <!-- Block 6 -->
+            <div class="math-block">
+                <h3 style="color: var(--text-muted);">$74M</h3>
+                <p><strong>Ads</strong><br>(Publicidad)</p>
+            </div>
+            
+            <div class="math-plus">=</div>
+            
+            <!-- Total -->
+            <div class="math-block total">
+                <h3>$1.437M</h3>
+                <p><strong>META 2026</strong><br>(Proyección Realista)</p>
+            </div>
+        </div>
+        
+        <div style="margin-top: 30px; text-align: center;">
+            <div style="display: inline-block; background: #FDE8E8; padding: 15px 30px; border-radius: 30px; border: 1px solid #FCA5A5;">
+                <p style="color: #9B1C1C; font-weight: 700; font-size: 16px; margin: 0;">RETO DE VENTA CRUZADA: ~$19M / MES EN UPSELL</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide-container');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            if (i === index) {
+                slide.classList.add('active');
+            } else {
+                slide.classList.remove('active');
+            }
+        });
+
+        // Actualizar botones
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === slides.length - 1;
+    }
+
+    function nextSlide() {
+        if (currentSlide < slides.length - 1) {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+    }
+
+    function prevSlide() {
+        if (currentSlide > 0) {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+    }
+
+    // Navegación con teclado
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') nextSlide();
+        if (e.key === 'ArrowLeft') prevSlide();
+    });
+</script>
+
+</body>
+</html>
